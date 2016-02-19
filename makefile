@@ -4,7 +4,7 @@ JFLAGS = -g
 .java.class:
 	$(JC) $(JFLAGS) $*.java
 CLASSES =\
-	main.java
+	Main.java
 all:classes
 classes: $(CLASSES:.java=.class)
 clean:
