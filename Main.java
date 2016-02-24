@@ -43,8 +43,9 @@ public class Main {
 			
 		}
 		System.out.print(array[m][n] + " ");
-		System.out.println(actualstring[m][n]);
-			//printLCS(actualstring, str1, m, n);
+		//System.out.println(actualstring[m][n+1]);
+		printLCS(actualstring, str1, m, n);
+		System.out.println();
 		
 	}
 	public static void printLCS(String[][] lcs, String str1, int i, int j){
@@ -55,7 +56,7 @@ public class Main {
 
 			if(lcs[i][j].substring(0,lcs[i][j].length()-1).equals(lcs[i-1][j-1] ) ){
 				printLCS(lcs, str1, i-1, j-1);
-				System.out.print(str1.charAt(i-1));
+				System.out.print(lcs[i][j].substring(lcs[i][j].length()-1));
 			}
 			else if(lcs[i][j] == lcs[i-1][j]){
 				printLCS(lcs, str1, i-1, j);
