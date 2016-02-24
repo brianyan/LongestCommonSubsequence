@@ -52,18 +52,33 @@ public class Main {
 		if( i == 0 || j == 0){
 			return;
 		}
-		if(lcs[i][j] != ""){
-
-			if(lcs[i][j].substring(0,lcs[i][j].length()-1).equals(lcs[i-1][j-1] ) ){
-				printLCS(lcs, str1, i-1, j-1);
-				System.out.print(lcs[i][j].substring(lcs[i][j].length()-1));
+		StringBuilder result = new StringBuilder();
+		while(lcs[i][j] != ""){
+			if((lcs[i][j].length()-1) == (lcs[i-1][j-1].length() )) {
+				result.append(lcs[i][j].substring(lcs[i][j].length()-1));
+				i = i-1;
+				j = j-1;
 			}
 			else if(lcs[i][j] == lcs[i-1][j]){
-				printLCS(lcs, str1, i-1, j);
+				i = i-1;
 			}
-			else{
-				printLCS(lcs, str1, i, j-1);
+			else {
+				j = j-1;
 			}
 		}
+		System.out.print(result.reverse().toString());
+		// if(lcs[i][j] != ""){
+
+		// 	if(lcs[i][j].substring(0,lcs[i][j].length()-1).equals(lcs[i-1][j-1] ) ){
+		// 		printLCS(lcs, str1, i-1, j-1);
+		// 		System.out.print(lcs[i][j].substring(lcs[i][j].length()-1));
+		// 	}
+		// 	else if(lcs[i][j] == lcs[i-1][j]){
+		// 		printLCS(lcs, str1, i-1, j);
+		// 	}
+		// 	else{
+		// 		printLCS(lcs, str1, i, j-1);
+		// 	}
+		// }
 	}
 }
