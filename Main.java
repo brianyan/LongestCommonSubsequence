@@ -1,6 +1,7 @@
 import java.util.*;
 public class Main {
 	public static ArrayList<List<Pair>> result = new ArrayList<List<Pair>>();
+	public static Set<String> set = new HashSet<String>();
 	public static void main(String [] args){
 		// read user input
 		Scanner userinput = new Scanner(System.in);
@@ -34,36 +35,13 @@ public class Main {
 				 int [][] allLCS = allLCSSequence(s[0], s[1]);
 				 ArrayList<String> list = new ArrayList<String>();
 				 String q = new String();
+				 set = new HashSet<String>();
 				 lcs1(allLCS, s[0], s[1], s[0].length(), s[1].length(),q);
-				 Set<String> set = new HashSet<String>();
-				 //set.add
-				 //System.out.println(answer.toString());
-				 // for(int i = 1; i<answer.size();i++){
-				 // 	ArrayList<Pair> temp = new ArrayList<Pair>();
-				 // 	while(i < answer.size()){
-				 // 		if(answer.get(i).equals(newstart)){
-				 // 			set.add(temp);
-				 // 			temp = new ArrayList<Pair>();
-				 // 		}
-				 // 		else {
-				 // 			temp.add(answer.get(i));
-				 // 		}
-				 // 	i++;
-				 // 	}
-				 // }
-				 // for(ArrayList<Pair> arr : set){
-				 // 	System.out.println(arr);
-				 // }
-				 // for(Pair str : answer){
-				 // 	System.out.print(str);
-				 // }
+				 for(String str: set){
+				 	str = "(" + str.substring(0,str.length()-2) + ")";
+				 	System.out.println(str);
+				 }
 				 System.out.println();
-				 // for(ArrayList<Pair>  pair : answer){
-				 // 	for(Pair p : pair){
-				 // 		System.out.print(p);
-				 // 	}
-				 // 	System.out.println();
-				 // }
 			}
 		}
 		userinput.close();
@@ -175,7 +153,7 @@ public class Main {
 	    if(dp[i][j] == 0){
 	    	// if(dp[])
 	    	// lcsSoFar = "<" + i + ", " + j + ">" + lcsSoFar;
-	        System.out.println(lcsSoFar);
+	        set.add(lcsSoFar);
 	        return;
 	    }
 	    if (dp[i][j] == dp[i][j - 1]) {
