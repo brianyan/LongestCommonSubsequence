@@ -8,6 +8,7 @@ you may compile all the files using "make all" and then you may run the program 
 
 for example.
 make all
+
 ./findLCS < small.txt 
 
 You do not have permission to use my code and do not plagarize. 
