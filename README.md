@@ -7,6 +7,7 @@ The input is must be formatted by having two strings on the same line and having
 you may compile all the files using "make all" and then you may run the program with the wrapper script. findLCS
 
 for example.
+
 make all
 
 ./findLCS < small.txt 
