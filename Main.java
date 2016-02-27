@@ -1,6 +1,5 @@
 import java.util.*;
 public class Main {
-	public static ArrayList<List<Pair>> result = new ArrayList<List<Pair>>();
 	public static Set<String> set = new HashSet<String>();
 	public static void main(String [] args){
 		// read user input
@@ -31,18 +30,6 @@ public class Main {
 				 	System.out.println(str);
 				 }
 				 System.out.println();
-			}
-		}
-		// try DP approach 
-		else if(args[0].equals("-test") ) {
-			while(userinput.hasNext()){
-				 String[] s = userinput.nextLine().split(" ");
-				 result = new ArrayList<List<Pair>>();
-				 int [][] allLCS = allLCSSequence(s[0], s[1]);
-				 ArrayList<List<Pair>> answer = printAllLCS(allLCS, s[0], s[1], s[0].length(), s[1].length());
-				 for(List<Pair> pair : answer){
-				 	System.out.println(pair.toString());
-				 }
 			}
 		}
 		userinput.close();
@@ -131,47 +118,23 @@ public class Main {
 	}
 	// Prints out allLCS
 	public static void lcs1(int[][] array, String str1, String str2, int i, int j, String lcsSoFar) {
+	    // check base case
 	    if(array[i][j] == 0){
 	        set.add(lcsSoFar);
 	        return;
 	    }
+	    // if it matches on left side, call lcs 
 	    if (array[i][j] == array[i][j - 1]) {
 	        lcs1(array, str1, str2, i, j-1, lcsSoFar);
 	    }
+	    // if it matches upper, call lcs
 	    if (array[i][j] == array[i - 1][j]) {
             lcs1(array, str1, str2, i-1, j, lcsSoFar);
         }
+        // case where the characters match so add on its index
         if(str1.charAt(i-1) == str2.charAt(j-1)){
 	        lcsSoFar = "<" + i + ", " + j + ">, "+ lcsSoFar;
 	        lcs1(array, str1, str2, i - 1, j - 1, lcsSoFar);
 	    } 
 	}
-	public static ArrayList<List<Pair>> printAllLCS(int[][] lcs, String str1, String str2, int i, int j){
-		if(i == 0 || j == 0){
-			return result;
-		}
-		List<Pair> list = new ArrayList<Pair>();
-		list.add(new Pair(i,j));
-		result.add(list);
-		// if()
-		// StringBuilder result = new StringBuilder();
-		//while(lcs[i][j] != ""){
-			if((lcs[i][j]-1) == (lcs[i-1][j-1])) {
-				// the two letters match up, so store the indexes
-
-				//result.append(lcs[i][j].substring(lcs[i][j].length()-1));
-				i = i-1;
-				j = j-1;
-			}
-			else if(lcs[i][j] == lcs[i-1][j]){
-				i = i-1;
-			}
-			else {
-				j = j-1;
-			}
-		return result;
-		//System.out.print(result.reverse().toString());
-	//}
-	}
-	
 }
