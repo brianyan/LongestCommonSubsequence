@@ -9,6 +9,11 @@ public class Pair {
 	public String toString(){
 	  return  "<" + Aindex + ", " + Bindex + ">"; 
 	}
+	public boolean equals(Pair t) {
+        if(this.Aindex == t.Aindex && this.Bindex == t.Bindex)
+        	return true;
+        return false;
+    }
 
 
 

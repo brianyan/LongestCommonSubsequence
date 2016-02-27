@@ -1,4 +1,2 @@
-3
-abcdbcadcda abbcddab
+1
 abab cab
-1021 210

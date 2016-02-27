@@ -33,10 +33,31 @@ public class Main {
 				 String[] s = userinput.nextLine().split(" ");
 				 int [][] allLCS = allLCSSequence(s[0], s[1]);
 				 ArrayList<String> list = new ArrayList<String>();
-				 ArrayList<String> answer = lcs1(allLCS, s[0], s[1], s[0].length(), s[1].length());
-				 for(String str : answer){
-				 	System.out.println(str);
-				 }
+				 String q = new String();
+				 lcs1(allLCS, s[0], s[1], s[0].length(), s[1].length(),q);
+				 Set<String> set = new HashSet<String>();
+				 //set.add
+				 //System.out.println(answer.toString());
+				 // for(int i = 1; i<answer.size();i++){
+				 // 	ArrayList<Pair> temp = new ArrayList<Pair>();
+				 // 	while(i < answer.size()){
+				 // 		if(answer.get(i).equals(newstart)){
+				 // 			set.add(temp);
+				 // 			temp = new ArrayList<Pair>();
+				 // 		}
+				 // 		else {
+				 // 			temp.add(answer.get(i));
+				 // 		}
+				 // 	i++;
+				 // 	}
+				 // }
+				 // for(ArrayList<Pair> arr : set){
+				 // 	System.out.println(arr);
+				 // }
+				 // for(Pair str : answer){
+				 // 	System.out.print(str);
+				 // }
+				 System.out.println();
 				 // for(ArrayList<Pair>  pair : answer){
 				 // 	for(Pair p : pair){
 				 // 		System.out.print(p);
@@ -129,44 +150,48 @@ public class Main {
 		}
 		return array;
 	}
-	// public static HashSet<ArrayList <Pair> > lcs(int[][] array, String str1, String str2, int i, int j, ArrayList<Pair> list) {
-	//     if (i == 0 || j == 0) {
-	//         lcss.add("");
-	//     } else if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
-	//         for (List<Pair> lcs : lcs(array, str1, str2, i - 1, j - 1)) {
-	//             lcss.add(lcs + new Pair(i,j));
-	//         }
-	//     } else {
-	//         if (array[i - 1][j] >= array[i][j - 1]) {
-	//             lcss.addAll(lcs(array, str1, str2, i - 1, j));
-	//         }
 
-	//         if (array[i][j - 1] >= array[i - 1][j]) {
-	//             lcss.addAll(lcs(array, str1, str2, i, j - 1));
-	//         }
-	//     }
-	//     return lcss;
-	// }
-	public static ArrayList<String> lcs1(int[][] dp, String fst, String snd, int i, int j) {
-    ArrayList<String> lcss = new ArrayList<String>();
+// 	public static ArrayList<String> lcs1(int[][] dp, String fst, String snd, int i, int j) {
+//     ArrayList<String> lcss = new ArrayList<String>();
 
-    if (i == 0 || j == 0) {
-        lcss.add("");
-    } else if (fst.charAt(i - 1) == snd.charAt(j - 1)) {
-        for (String lcs : lcs1(dp, fst, snd, i - 1, j - 1)) {
-            lcss.add(lcs + fst.charAt(i - 1));
-        }
-    } else {
-        if (dp[i - 1][j] >= dp[i][j - 1]) {
-            lcss.addAll(lcs1(dp, fst, snd, i - 1, j));
-        }
+//     if (i == 0 || j == 0) {
+//         lcss.add("");
+//     } else if (fst.charAt(i - 1) == snd.charAt(j - 1)) {
+//         for (String lcs : lcs1(dp, fst, snd, i - 1, j - 1)) {
+//             lcss.add(lcs + fst.charAt(i - 1));
+//         }
+//     } else {
+//         if (dp[i - 1][j] >= dp[i][j - 1]) {
+//             lcss.addAll(lcs1(dp, fst, snd, i - 1, j));
+//         }
 
-        if (dp[i][j - 1] >= dp[i - 1][j]) {
-            lcss.addAll(lcs1(dp, fst, snd, i, j - 1));
+//         if (dp[i][j - 1] >= dp[i - 1][j]) {
+//             lcss.addAll(lcs1(dp, fst, snd, i, j - 1));
+//         }
+//     }
+//     return lcss;
+// }
+	public static void lcs1(int[][] dp, String fst, String snd, int i, int j, String lcsSoFar) {
+	    if(dp[i][j] == 0){
+	    	// if(dp[])
+	    	// lcsSoFar = "<" + i + ", " + j + ">" + lcsSoFar;
+	        System.out.println(lcsSoFar);
+	        return;
+	    }
+	    if (dp[i][j] == dp[i][j - 1]) {
+	        lcs1(dp, fst, snd, i, j-1, lcsSoFar);
+	    }
+	    if (dp[i][j] == dp[i - 1][j]) {
+            lcs1(dp, fst, snd, i-1, j, lcsSoFar);
         }
-    }
-    return lcss;
-}
+        if(fst.charAt(i-1) == snd.charAt(j-1)){
+	        lcsSoFar = "<" + i + ", " + j + ">, "+ lcsSoFar;
+	        lcs1(dp, fst, snd, i - 1, j - 1, lcsSoFar); //{ // String str: lcs1(dp, fst, snd, i - 1, j - 1)
+	    } 
+	}
+	//(<3, 2>, <4, 3>)
+// (<1, 2>, <4, 3>)
+// (<1, 2>, <2, 3>)
 	public static ArrayList<List<Pair>> printAllLCS(int[][] lcs, String str1, String str2, int i, int j){
 		if(i == 0 || j == 0){
 			return result;
